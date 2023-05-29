@@ -18,12 +18,36 @@ provider:
               - arn:aws:dynamodb:us-east-1:167880115321:table/ItemTable
 
 functions:
-  api:
-    handler: src/hello.handler
-    events:
-      - httpApi:
-          path: /
-          method: get
+hello:
+  handler: src/hello.handler
+  events:
+    - http:
+        path: /
+        method: get
+insertItem:
+  handler: src/insertItem.handler
+  events:
+    - http:
+        path: /item
+        method: post
+fetchItems:
+  handler: src/fetchItems.handler
+  events:
+    - http:
+        path: /items
+        method: get
+fetchItem:
+  handler: src/fetchItem.handler
+  events:
+    - http:
+        path: /items/{id}
+        method: get
+updateItem:
+  handler: src/updateItem.handler
+  events:
+    - http:
+        path: /items/{id}
+        method: put
 
 resources:
   Resources:
